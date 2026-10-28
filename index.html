@@ -1,28 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malasiqui Municipal Hospital | Official Landing Page</title>
+    <title>Malasiqui Municipal Hospital | Healthcare in Malasiqui, Pangasinan</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         hospital: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        },
+                        emergency: {
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                        },
+                        accent: {
                             500: '#10b981',
                             600: '#059669',
-                            700: '#047857',
-                            dark: '#0f172a',
-                            light: '#f8fafc'
                         }
                     },
                     fontFamily: {
@@ -32,555 +41,888 @@
             }
         }
     </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar for better UI */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Ticker Animation */
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .ticker-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .ticker-move {
+            display: inline-block;
+            animation: ticker 25s linear infinite;
+        }
+        .ticker-move:hover {
+            animation-play-state: paused;
+        }
+    </style>
 </head>
-<body class="bg-hospital-light text-slate-800 font-sans antialiased flex flex-col min-h-screen">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- TOP EMERGENCY BAR -->
-    <div class="bg-red-600 text-white text-xs sm:text-sm py-2 px-4 sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div class="flex items-center gap-2 font-medium text-center sm:text-left">
-                <span class="flex h-2.5 w-2.5 relative">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
-                </span>
-                <span>🚨 24/7 Emergency Room Active | Contact ER Desk: <strong>(0962) 933 9935</strong></span>
+    <!-- TOP ANNOUNCEMENT TICKER -->
+    <div class="bg-hospital-800 text-white text-sm py-2 px-4 shadow-inner overflow-hidden border-b border-hospital-700">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2 shrink-0 bg-hospital-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-accent-500 z-10 shadow-sm">
+                <i class="fa-solid fa-bullhorn animate-pulse"></i> Advisory
             </div>
-            <div class="flex items-center gap-4 text-xs font-semibold">
-                <span>📞 Hotline: (0962) 933 9935</span>
-                <a href="#contact" class="underline hover:text-red-100 hidden md:inline">Find Us</a>
+            <div class="ticker-wrap w-full ml-4">
+                <div class="ticker-move text-slate-200">
+                    <span class="inline-block mx-4"><i class="fa-solid fa-circle-info text-accent-500 mr-1"></i> <strong>PhilHealth YAKAP & GAMOT:</strong> Available for financial and medical assistance.</span>
+                    <span class="inline-block mx-4">•</span>
+                    <span class="inline-block mx-4"><i class="fa-solid fa-clock text-yellow-400 mr-1"></i> <strong>Emergency Room:</strong> Operating 24/7 with full trauma and triage capability.</span>
+                    <span class="inline-block mx-4">•</span>
+                    <span class="inline-block mx-4"><i class="fa-solid fa-circle-info text-accent-500 mr-1"></i> <strong>PhilHealth YAKAP & GAMOT:</strong> Available for financial and medical assistance.</span>
+                    <span class="inline-block mx-4">•</span>
+                    <span class="inline-block mx-4"><i class="fa-solid fa-clock text-yellow-400 mr-1"></i> <strong>Emergency Room:</strong> Operating 24/7 with full trauma and triage capability.</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="bg-white shadow-sm sticky top-[37px] sm:top-[41px] z-40 transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Branding -->
-            <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-hospital-600 text-white rounded-xl flex items-center justify-center shadow-md font-bold text-xl">
-                    <i class="fa-solid fa-hospital"></i>
+    <!-- MAIN HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md border-b border-slate-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Hospital Title -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-hospital-600 text-white flex items-center justify-center font-bold text-xl shadow-md border-2 border-hospital-100 shrink-0">
+                        <i class="fa-solid fa-hospital"></i>
+                    </div>
+                    <div>
+                        <a href="#" class="text-xl sm:text-2xl font-extrabold text-hospital-800 tracking-tight block leading-none">
+                            Malasiqui Municipal Hospital
+                        </a>
+                        <span class="text-xs sm:text-sm font-medium text-slate-500 tracking-wide flex items-center gap-1 mt-1">
+                            <i class="fa-solid fa-location-dot text-red-500"></i> Malasiqui, Pangasinan
+                        </span>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-lg sm:text-xl font-bold text-slate-900 leading-tight">Malasiqui Municipal Hospital</h1>
-                    <p class="text-xs text-slate-500 font-medium">Department of Health & PhilHealth Accredited</p>
-                    <p class="text-[11px] text-emerald-600 font-semibold">PhilHealth YAKAP & PhilHealth GAMOT Accredited</p>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-6 lg:gap-8 font-semibold text-slate-700 text-sm">
+                    <a href="#services" class="hover:text-hospital-600 transition-colors py-2">Services</a>
+                    <a href="#opd-schedule" class="hover:text-hospital-600 transition-colors py-2">OPD Schedule</a>
+                    <a href="#patient-guide" class="hover:text-hospital-600 transition-colors py-2">Patient Guide</a>
+                    <a href="#location" class="hover:text-hospital-600 transition-colors py-2">Location & Contact</a>
+                </nav>
+
+                <!-- Action Button: Emergency Call -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="tel:+639629339935" class="bg-emergency-600 hover:bg-emergency-700 text-white font-bold py-2.5 px-5 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-sm transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-phone-volume animate-bounce"></i>
+                        <span>Emergency: (0962) 933 9935</span>
+                    </a>
                 </div>
-            </div>
 
-            <!-- Desktop Nav -->
-            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-slate-600">
-                <a href="#home" class="hover:text-hospital-600 transition">Home</a>
-                <a href="#services" class="hover:text-hospital-600 transition">Services</a>
-                <a href="#schedule" class="hover:text-hospital-600 transition">OPD Schedule</a>
-                <a href="#guidelines" class="hover:text-hospital-600 transition">Patient Guide</a>
-                <a href="#contact" class="hover:text-hospital-600 transition">Contact Us</a>
-            </nav>
-
-            <!-- Call to action button -->
-            <div class="hidden sm:flex items-center gap-3">
-                <a href="tel:09629339935" class="bg-red-600 hover:bg-red-700 text-white font-semibold text-sm px-4 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2">
-                    <i class="fa-solid fa-phone-volume"></i> Emergency Call
-                </a>
-            </div>
-
-            <!-- Mobile menu button -->
-            <div class="md:hidden flex items-center">
-                <button id="menu-btn" class="text-slate-700 hover:text-slate-900 focus:outline-none p-2">
-                    <i class="fa-solid fa-bars text-xl"></i>
-                </button>
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden items-center gap-2">
+                    <a href="tel:+639629339935" class="bg-emergency-600 text-white p-2.5 rounded-full shadow hover:bg-emergency-700" title="Emergency Call">
+                        <i class="fa-solid fa-phone"></i>
+                    </a>
+                    <button id="mobile-menu-btn" type="button" class="p-2.5 text-slate-600 hover:text-hospital-600 rounded-lg hover:bg-slate-100 focus:outline-none" aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- Mobile Menu Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-3">
-            <a href="#home" class="block text-slate-700 hover:text-hospital-600 py-1 font-medium">Home</a>
-            <a href="#services" class="block text-slate-700 hover:text-hospital-600 py-1 font-medium">Services</a>
-            <a href="#schedule" class="block text-slate-700 hover:text-hospital-600 py-1 font-medium">OPD Schedule</a>
-            <a href="#guidelines" class="block text-slate-700 hover:text-hospital-600 py-1 font-medium">Patient Guide</a>
-            <a href="#contact" class="block text-slate-700 hover:text-hospital-600 py-1 font-medium">Contact Us</a>
-            <div class="pt-2">
-                <a href="tel:09629339935" class="w-full bg-red-600 text-white font-semibold text-center py-2.5 rounded-lg shadow-sm block">
-                    <i class="fa-solid fa-phone-volume mr-2"></i> Emergency: (0962) 933 9935
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#services" class="mobile-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-hospital-50 hover:text-hospital-600">Services</a>
+            <a href="#opd-schedule" class="mobile-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-hospital-50 hover:text-hospital-600">OPD Schedule</a>
+            <a href="#patient-guide" class="mobile-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-hospital-50 hover:text-hospital-600">Patient Guide</a>
+            <a href="#location" class="mobile-link block px-3 py-2.5 rounded-md font-medium text-slate-700 hover:bg-hospital-50 hover:text-hospital-600">Location & Contact</a>
+            <div class="pt-2 border-t border-slate-100">
+                <a href="tel:+639629339935" class="w-full bg-emergency-600 text-white font-bold py-3 rounded-lg text-center block shadow hover:bg-emergency-700">
+                    <i class="fa-solid fa-phone-volume mr-2"></i> Call ER: (0962) 933 9935
                 </a>
             </div>
         </div>
     </header>
 
     <!-- HERO SECTION -->
-    <section id="home" class="relative bg-gradient-to-br from-hospital-50 via-white to-blue-50 py-16 lg:py-24 border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="relative bg-gradient-to-br from-hospital-900 via-hospital-800 to-hospital-700 text-white py-16 lg:py-24 overflow-hidden">
+        <!-- Background Decorative Elements -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+        <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-hospital-500 rounded-full blur-3xl opacity-20 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
-                <!-- Left text content -->
-                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-                    <span class="inline-flex items-center gap-2 bg-emerald-100 text-emerald-800 text-xs font-semibold px-3 py-1.5 rounded-full">
-                        <i class="fa-solid fa-shield-heart"></i> Quality Public Healthcare for Malasiquenos
-                    </span>
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                        Compassionate, Accessible Healthcare at <span class="text-hospital-600">Malasiqui Municipal Hospital</span>
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <!-- Location Badge -->
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-hospital-100 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-6 shadow-sm">
+                        <i class="fa-solid fa-shield-halved text-accent-500"></i>
+                        <span>Official Municipal Healthcare Facility of Malasiqui</span>
+                    </div>
+
+                    <!-- Main Tagline -->
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white mb-6">
+                        Compassionate, Accessible Healthcare for <span class="text-sky-300 underline decoration-sky-400/40 underline-offset-8">Malasiqui</span>
                     </h1>
-                    <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0">
-                        Dedicated to providing reliable primary care, 24/7 emergency response, and community-focused medical services right here in Pangasinan.
+
+                    <p class="text-base sm:text-lg text-hospital-100 mb-8 max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Dedicated to serving the healthcare needs of our local community with modern medical facilities, 24/7 emergency care, and accessible outpatient services.
                     </p>
-                    
+
                     <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="#schedule" class="w-full sm:w-auto bg-hospital-600 hover:bg-hospital-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-md transition text-center flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-calendar-days"></i> View OPD Schedule
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+                        <a href="#opd-schedule" class="w-full sm:w-auto bg-accent-500 hover:bg-accent-600 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all text-center flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
+                            <i class="fa-regular fa-calendar-check text-lg"></i>
+                            <span>View OPD Schedule</span>
                         </a>
-                        <a href="#contact" class="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold px-6 py-3.5 rounded-xl shadow-sm transition text-center flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-location-dot"></i> Get Directions & Map
+                        <a href="tel:+639629339935" class="w-full sm:w-auto bg-emergency-600 hover:bg-emergency-700 text-white font-bold py-3.5 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all text-center flex items-center justify-center gap-2 border border-emergency-500">
+                            <i class="fa-solid fa-truck-medical text-lg"></i>
+                            <span>Contact ER Desk</span>
                         </a>
                     </div>
 
-                    <!-- Quick highlights -->
-                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200/60 max-w-lg mx-auto lg:mx-0">
-                        <div>
-                            <p class="text-xl sm:text-2xl font-bold text-slate-900">24/7</p>
-                            <p class="text-xs text-slate-500 font-medium">Emergency Care</p>
+                    <!-- Quick Status Pills -->
+                    <div class="pt-6 border-t border-hospital-700/60 flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs sm:text-sm">
+                        <div class="flex items-center gap-2 bg-indigo-950/60 border border-indigo-500/40 text-indigo-300 px-3.5 py-1.5 rounded-full">
+                            <i class="fa-solid fa-hand-holding-medical text-indigo-400"></i>
+                            <span>Department of Health & PhilHealth Accredited</span>
                         </div>
-                        <div>
-                            <p class="text-xl sm:text-2xl font-bold text-slate-900">DOH & PhilHealth</p>
-                            <p class="text-xs text-slate-500 font-medium">Accredited</p>
+                        <div class="flex items-center gap-2 bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 px-3.5 py-1.5 rounded-full">
+                            <i class="fa-solid fa-file-medical text-emerald-400"></i>
+                            <span>PhilHealth YAKAP & PhilHealth GAMOT Accredited</span>
                         </div>
-                        <div>
-                            <p class="text-xl sm:text-2xl font-bold text-slate-900">YAKAP & GAMOT</p>
-                            <p class="text-xs text-slate-500 font-medium">PhilHealth Programs</p>
+                        <div class="flex items-center gap-2 bg-sky-950/60 border border-sky-500/40 text-sky-300 px-3.5 py-1.5 rounded-full">
+                            <i class="fa-regular fa-clock text-sky-400"></i>
+                            <span>OPD: Mon–Fri (8:00 AM - 5:00 PM)</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right Emergency Card Box -->
+                <!-- Feature Hero Card / Quick Quick Access Grid -->
                 <div class="lg:col-span-5">
-                    <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-slate-100 relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
-                            Urgent Response
-                        </div>
-                        <div class="flex items-center gap-4 mb-6">
-                            <div class="w-14 h-14 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center text-2xl">
-                                <i class="fa-solid fa-truck-medical animate-pulse"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-slate-900">Medical Emergency?</h3>
-                                <p class="text-xs text-slate-500">Our emergency desk is active around the clock.</p>
-                            </div>
-                        </div>
+                    <div class="bg-white text-slate-800 rounded-2xl shadow-2xl p-6 sm:p-8 border border-slate-100">
+                        <h2 class="text-xl font-bold text-hospital-800 mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
+                            <i class="fa-solid fa-hospital-user text-hospital-600"></i> Quick Hospital Services
+                        </h2>
 
-                        <div class="space-y-4 mb-6">
-                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 flex items-center justify-between">
-                                <div>
-                                    <p class="text-xs text-slate-500 font-medium">Direct ER Hotline</p>
-                                    <p class="text-lg font-bold text-slate-900 tracking-wide">(0962) 933 9935</p>
+                        <div class="space-y-4">
+                            <!-- Quick Link 1 -->
+                            <a href="#opd-schedule" class="group flex items-center p-3.5 rounded-xl border border-slate-200 hover:border-hospital-500 hover:bg-hospital-50/50 transition-all">
+                                <div class="w-10 h-10 rounded-lg bg-hospital-100 text-hospital-600 flex items-center justify-center text-lg font-bold mr-4 shrink-0 group-hover:bg-hospital-600 group-hover:text-white transition-colors">
+                                    <i class="fa-solid fa-stethoscope"></i>
                                 </div>
-                                <a href="tel:09629339935" class="bg-red-600 hover:bg-red-700 text-white p-3 rounded-lg shadow-sm transition">
-                                    <i class="fa-solid fa-phone"></i>
-                                </a>
-                            </div>
-                            <div class="text-xs text-slate-500 space-y-1">
-                                <p><i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> Ambulance dispatch available</p>
-                                <p><i class="fa-solid fa-circle-check text-emerald-600 mr-1.5"></i> Triage and trauma care ready</p>
-                            </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-slate-800 text-sm group-hover:text-hospital-700">Outpatient Consultation</h3>
+                                    <p class="text-xs text-slate-500">General medicine & specialist clinics</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-slate-400 text-xs group-hover:text-hospital-600 group-hover:translate-x-1 transition-all"></i>
+                            </a>
+
+                            <!-- Quick Link 2 -->
+                            <a href="#patient-guide" class="group flex items-center p-3.5 rounded-xl border border-slate-200 hover:border-hospital-500 hover:bg-hospital-50/50 transition-all">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg font-bold mr-4 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                                    <i class="fa-solid fa-notes-medical"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-slate-800 text-sm group-hover:text-hospital-700">PhilHealth YAKAP & GAMOT</h3>
+                                    <p class="text-xs text-slate-500">Requirements & medical assistance</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-slate-400 text-xs group-hover:text-hospital-600 group-hover:translate-x-1 transition-all"></i>
+                            </a>
+
+                            <!-- Quick Link 3 -->
+                            <a href="#services" class="group flex items-center p-3.5 rounded-xl border border-slate-200 hover:border-hospital-500 hover:bg-hospital-50/50 transition-all">
+                                <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-bold mr-4 shrink-0 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                                    <i class="fa-solid fa-flask-vial"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-slate-800 text-sm group-hover:text-hospital-700">Laboratory & Diagnostic</h3>
+                                    <p class="text-xs text-slate-500">Blood test, X-Ray & Ultrasound</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right text-slate-400 text-xs group-hover:text-hospital-600 group-hover:translate-x-1 transition-all"></i>
+                            </a>
                         </div>
 
-                        <a href="tel:09629339935" class="w-full block bg-slate-900 hover:bg-slate-800 text-white text-center font-semibold py-3 rounded-xl shadow transition">
-                            Call Emergency Desk Now
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- QUICK HOSPITAL SERVICES -->
-    <section id="services" class="py-16 lg:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                <h2 class="text-xs font-bold tracking-widest text-hospital-600 uppercase">What We Offer</h2>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Core Hospital Services & Care Units</h3>
-                <p class="text-slate-600 text-sm sm:text-base">Designed to cater to the health requirements of families within Malasiqui and nearby municipalities.</p>
-            </div>
-
-            <!-- Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Service 1 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition group">
-                    <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-red-600 group-hover:text-white transition">
-                        <i class="fa-solid fa-truck-medical"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">24/7 Emergency Care</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Round-the-clock medical attention for trauma, accidents, acute illnesses, and critical stabilization.</p>
-                    <span class="inline-block text-xs font-semibold text-red-600 bg-red-50 px-2.5 py-1 rounded-md">Open 24 Hours Daily</span>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition group">
-                    <div class="w-12 h-12 bg-hospital-100 text-hospital-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-hospital-600 group-hover:text-white transition">
-                        <i class="fa-solid fa-stethoscope"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">Outpatient Department (OPD)</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">General medical check-ups, doctor consultations, and health monitoring for non-emergency conditions.</p>
-                    <span class="inline-block text-xs font-semibold text-hospital-700 bg-hospital-100 px-2.5 py-1 rounded-md">Mon–Fri | 8AM–5PM</span>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition group">
-                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-amber-600 group-hover:text-white transition">
-                        <i class="fa-solid fa-baby"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">Maternity & Childcare</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Prenatal check-ups, infant care, and pediatric advisory services.</p>
-                    <span class="inline-block text-xs font-semibold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">Not yet available until further notice</span>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition group">
-                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition">
-                        <i class="fa-solid fa-flask"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">Laboratory & Diagnostics</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Essential diagnostic testing including blood chemistry, urinalysis, and basic laboratory assessments.</p>
-                    <span class="inline-block text-xs font-semibold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-md">Diagnostic Support</span>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition group">
-                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition">
-                        <i class="fa-solid fa-pills"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">Hospital Pharmacy</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Dispensing essential medicines, prescriptions, and pharmaceutical supplies for patients.</p>
-                    <span class="inline-block text-xs font-semibold text-purple-700 bg-purple-100 px-2.5 py-1 rounded-md">Essential Meds Access</span>
-                </div>
-
-                <!-- Service 6 -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition group">
-                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition">
-                        <i class="fa-solid fa-file-invoice-dollar"></i>
-                    </div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-2">PhilHealth YAKAP & PhilHealth GAMOT</h4>
-                    <p class="text-slate-600 text-sm leading-relaxed mb-4">Assistance desk for PhilHealth member verification, YAKAP consultations, and GAMOT medication claims.</p>
-                    <span class="inline-block text-xs font-semibold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-md">Enrollment & Claims Support</span>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- OPD SCHEDULE SECTION -->
-    <section id="schedule" class="py-16 lg:py-24 bg-slate-50 border-y border-slate-200/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                <h2 class="text-xs font-bold tracking-widest text-hospital-600 uppercase">Consultation Timetable</h2>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Outpatient Department (OPD) Schedule</h3>
-                <p class="text-slate-600 text-sm sm:text-base">Please review the weekly clinical schedule before planning your hospital visit.</p>
-            </div>
-
-            <!-- Schedule Card/Table Container -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden max-w-4xl mx-auto">
-                <div class="bg-slate-900 text-white p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div>
-                        <h4 class="text-lg font-bold">Weekly Clinic Hours</h4>
-                        <p class="text-xs text-slate-300">Subject to change during public holidays or special announcements.</p>
-                    </div>
-                    <div class="bg-hospital-600 text-white text-xs font-semibold px-3 py-1.5 rounded-lg">
-                        <i class="fa-solid fa-clock mr-1"></i> Standard OPD Hours
-                    </div>
-                </div>
-
-                <div class="divide-y divide-slate-100">
-                    
-                    <!-- Row 1 -->
-                    <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">
-                                <i class="fa-solid fa-stethoscope"></i>
-                            </div>
+                        <!-- Emergency Banner inside Card -->
+                        <div class="mt-6 p-4 rounded-xl bg-red-50 border border-red-200 flex items-center justify-between">
                             <div>
-                                <h5 class="font-bold text-slate-900">General Medicine / Consultation</h5>
-                                <p class="text-xs text-slate-500">General check-ups and medical clearance evaluations</p>
+                                <span class="text-xs font-bold text-red-600 uppercase tracking-wider block">Medical Emergency?</span>
+                                <p class="text-sm font-extrabold text-slate-800">Direct ER line: (0962) 933 9935</p>
                             </div>
-                        </div>
-                        <div class="text-left md:text-right">
-                            <span class="inline-block bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full">Monday – Friday</span>
-                            <p class="text-sm font-bold text-slate-800 mt-1">8:00 AM – 5:00 PM</p>
-                        </div>
-                    </div>
-
-                    <!-- Row 2 -->
-                    <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">
-                                <i class="fa-solid fa-tooth"></i>
-                            </div>
-                            <div>
-                                <h5 class="font-bold text-slate-900">Dental Services</h5>
-                                <p class="text-xs text-slate-500">Oral health check-ups and basic dental procedures</p>
-                            </div>
-                        </div>
-                        <div class="text-left md:text-right">
-                            <span class="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full">Monday – Wednesday – Friday only</span>
-                            <p class="text-sm font-bold text-slate-800 mt-1">9:30 AM – 12:00 NN</p>
-                        </div>
-                    </div>
-
-                    <!-- Row 3 -->
-                    <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">
-                                <i class="fa-solid fa-calendar-week"></i>
-                            </div>
-                            <div>
-                                <h5 class="font-bold text-slate-900">Saturdays & Holidays</h5>
-                                <p class="text-xs text-slate-500">Weekend and holiday outpatient service hours</p>
-                            </div>
-                        </div>
-                        <div class="text-left md:text-right">
-                            <span class="inline-block bg-purple-50 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">Saturdays & Holidays</span>
-                            <p class="text-sm font-bold text-slate-800 mt-1">8:00 AM – 12:00 NN</p>
-                        </div>
-                    </div>
-
-                    <!-- Row 4 -->
-                    <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-red-100 text-red-700 flex items-center justify-center font-bold text-sm">
-                                <i class="fa-solid fa-bed-pulse"></i>
-                            </div>
-                            <div>
-                                <h5 class="font-bold text-slate-900">Sundays</h5>
-                                <p class="text-xs text-slate-500">Weekend service policy</p>
-                            </div>
-                        </div>
-                        <div class="text-left md:text-right">
-                            <span class="inline-block bg-red-50 text-red-700 text-xs font-semibold px-3 py-1 rounded-full">Sundays</span>
-                            <p class="text-sm font-bold text-slate-800 mt-1">Emergency cases only, no OPD Check-up</p>
-                        </div>
-                    </div>
-
-                    <!-- Row 5 -->
-                    <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-slate-50 transition">
-                        <div class="flex items-center gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">
-                                <i class="fa-solid fa-triangle-exclamation"></i>
-                            </div>
-                            <div>
-                                <h5 class="font-bold text-slate-900">OB-GYN, Pediatrics & ABTC</h5>
-                                <p class="text-xs text-slate-500">Specialized clinical departments</p>
-                            </div>
-                        </div>
-                        <div class="text-left md:text-right">
-                            <span class="inline-block bg-amber-50 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full">Specialty Clinics</span>
-                            <p class="text-sm font-bold text-amber-700 mt-1">Not yet available until further notice</p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PATIENT & VISITOR GUIDELINES -->
-    <section id="guidelines" class="py-16 lg:py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                <h2 class="text-xs font-bold tracking-widest text-hospital-600 uppercase">Preparation Guide</h2>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Patient & Visitor Guidelines</h3>
-                <p class="text-slate-600 text-sm sm:text-base">Everything you need to prepare for a smooth consultation, admission, or hospital visit.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
-                <!-- What to Bring Card -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 space-y-6">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-hospital-100 text-hospital-600 rounded-xl flex items-center justify-center font-bold">
-                            <i class="fa-solid fa-clipboard-list"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-slate-900">Checklist for OPD, YAKAP Consultation & Admission</h4>
-                    </div>
-
-                    <p class="text-slate-600 text-sm">Please present at least one valid identification card or credential upon arrival:</p>
-
-                    <ul class="space-y-3 text-sm text-slate-700">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-hospital-600 mt-1"></i>
-                            <span>PhilHealth ID</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-hospital-600 mt-1"></i>
-                            <span>PhilSys National ID (PhilSys ID)</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-hospital-600 mt-1"></i>
-                            <span>Driver's License</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-hospital-600 mt-1"></i>
-                            <span>Voter's ID</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-hospital-600 mt-1"></i>
-                            <span>Senior Citizen ID</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-circle-check text-hospital-600 mt-1"></i>
-                            <span>Copy of Birth Certificate (for 5 years old and below)</span>
-                        </li>
-                    </ul>
-
-                    <div class="bg-hospital-50 border border-hospital-100 p-4 rounded-xl text-xs text-hospital-800 font-medium">
-                        <i class="fa-solid fa-triangle-exclamation mr-1.5"></i> *Required for MMH Registered YAKAP Beneficiaries.
-                    </div>
-                </div>
-
-                <!-- Visiting Hours Card -->
-                <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 space-y-6">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-                        <h4 class="text-lg font-bold text-slate-900">Hospital Visiting Hours</h4>
-                    </div>
-
-                    <p class="text-slate-600 text-sm">To ensure patient recovery and maintain a clean ward environment, visitors are welcome during designated windows:</p>
-
-                    <div class="space-y-4">
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-center justify-between">
-                            <div>
-                                <p class="text-xs text-slate-500 font-medium">Morning Visiting Schedule</p>
-                                <p class="text-base font-bold text-slate-900">8:00 AM – 12:00 NN</p>
-                            </div>
-                            <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-md">Morning Session</span>
-                        </div>
-
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 flex items-center justify-between">
-                            <div>
-                                <p class="text-xs text-slate-500 font-medium">Afternoon Visiting Schedule</p>
-                                <p class="text-base font-bold text-slate-900">4:00 PM – 8:00 PM</p>
-                            </div>
-                            <span class="bg-blue-50 text-blue-700 text-xs font-semibold px-2.5 py-1 rounded-md">Afternoon Session</span>
-                        </div>
-                    </div>
-
-                    <div class="text-xs text-slate-500 space-y-1">
-                        <p><i class="fa-solid fa-circle-info text-blue-600 mr-1.5"></i> Please limit visitors to 1-2 persons per patient at any given time.</p>
-                        <p><i class="fa-solid fa-circle-info text-blue-600 mr-1.5"></i> Face masks may be required inside specialized medical wards.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- LOCATION & CONTACT -->
-    <section id="contact" class="py-16 lg:py-24 bg-slate-50 border-t border-slate-200/60">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                <h2 class="text-xs font-bold tracking-widest text-hospital-600 uppercase">Reach Out</h2>
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Location & Contact Details</h3>
-                <p class="text-slate-600 text-sm sm:text-base">Visit our facility or get in touch with our front desk and administrative personnel.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <!-- Contact info cards -->
-                <div class="lg:col-span-6 space-y-6">
-                    
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-                        <div class="w-12 h-12 bg-hospital-100 text-hospital-600 rounded-xl flex items-center justify-center shrink-0 text-xl">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 mb-1">Hospital Address</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed mb-3">Cabatling, Malasiqui, Pangasinan, Malasiqui, Philippines, 2421</p>
-                            <a href="https://maps.app.goo.gl/K4dtA4wuU9gzYQUB6" target="_blank" class="text-xs font-semibold text-hospital-600 hover:text-hospital-700 underline flex items-center gap-1">
-                                <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps
+                            <a href="tel:+639629339935" class="bg-red-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-red-700 shadow">
+                                <i class="fa-solid fa-phone mr-1"></i> Call Now
                             </a>
                         </div>
                     </div>
-
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-                        <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center shrink-0 text-xl">
-                            <i class="fa-solid fa-phone-volume"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 mb-1">24/7 Emergency Hotlines</h4>
-                            <div class="text-slate-600 text-sm space-y-1">
-                                <p>Landline: <strong class="text-slate-900">(0962) 933 9935</strong></p>
-                                <p>Mobile: <strong class="text-slate-900">+63 962 933 9935</strong></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shrink-0 text-xl">
-                            <i class="fa-solid fa-circle-info"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-900 mb-1">Information Desk & OPD</h4>
-                            <div class="text-slate-600 text-sm space-y-1">
-                                <p>Landline: <strong class="text-slate-900">(0962) 933 9935</strong></p>
-                                <p>Mobile: <strong class="text-slate-900">+63 962 933 9935</strong></p>
-                                <p>Email: <strong class="text-slate-900">malasiquimunicipal.hospital@gmail.com</strong></p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
-                <!-- Google Map Embed Box -->
-                <div class="lg:col-span-6 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm h-full min-h-[420px] flex flex-col">
-                    <div class="w-full h-full min-h-[380px] rounded-xl overflow-hidden bg-slate-100 relative">
-                        <!-- Embedded Google Map centered on Cabatling, Malasiqui, Pangasinan -->
-                        <iframe 
-                            class="w-full h-full border-0 absolute inset-0"
-                            loading="lazy"
-                            allowfullscreen
-                            referrerpolicy="no-referrer-when-downgrade"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.257123!2d120.418!3d15.916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391210000000001%3A0x0!2sCabatling%2C%20Malasiqui%2C%20Pangasinan!5e0!3m2!1sen!2sph!4v1710000000000">
-                        </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE MEDICAL SERVICES GRID -->
+    <section id="services" class="py-16 sm:py-20 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-hospital-600 text-xs sm:text-sm font-bold tracking-widest uppercase bg-hospital-50 px-3 py-1 rounded-full border border-hospital-100">Our Departments</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-hospital-900 mt-3 mb-4">Comprehensive Care Services</h2>
+                <p class="text-slate-600 text-base sm:text-lg">Providing accessible healthcare solutions tailored to every family in Malasiqui and neighboring municipalities.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1: ER -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:shadow-xl hover:border-hospital-300 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-red-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-truck-medical"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-hospital-600">24/7 Emergency Care</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Round-the-clock emergency medical support equipped with trauma response, minor surgical care, and emergency triage staff.
+                        </p>
                     </div>
-                    <div class="p-3 text-center">
-                        <a href="https://maps.app.goo.gl/K4dtA4wuU9gzYQUB6" target="_blank" class="text-xs font-semibold text-hospital-600 hover:underline">
-                            <i class="fa-solid fa-external-link-alt mr-1"></i> View larger map on Google Maps
-                        </a>
+                    <button onclick="openModal('service-er')" class="text-hospital-600 font-bold text-sm inline-flex items-center hover:text-hospital-800 transition-colors">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 2: OPD -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:shadow-xl hover:border-hospital-300 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-hospital-100 text-hospital-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-hospital-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-hospital-600">Outpatient Department (OPD)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Scheduled doctor consultations, health screenings, follow-up examinations, and preventive medical advice.
+                        </p>
+                    </div>
+                    <a href="#opd-schedule" class="text-hospital-600 font-bold text-sm inline-flex items-center hover:text-hospital-800 transition-colors">
+                        View Schedule <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3: Maternity & Pediatrics -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:shadow-xl hover:border-hospital-300 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-pink-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-baby-carriage"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-hospital-600">Maternity & Child Care</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Prenatal checkups, normal spontaneous delivery, newborn screening, and pediatric care.
+                        </p>
+                        <span class="inline-block bg-pink-100 text-pink-800 text-xs font-bold px-3 py-1 rounded-full mb-4">Not yet available until further notice</span>
+                    </div>
+                    <button onclick="openModal('service-maternity')" class="text-hospital-600 font-bold text-sm inline-flex items-center hover:text-hospital-800 transition-colors">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 4: Laboratory & Imaging -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:shadow-xl hover:border-hospital-300 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-hospital-600">Laboratory & Imaging</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Essential clinical laboratory testing (blood, urinalysis, stool analysis) and X-ray diagnostic imaging services.
+                        </p>
+                    </div>
+                    <button onclick="openModal('service-lab')" class="text-hospital-600 font-bold text-sm inline-flex items-center hover:text-hospital-800 transition-colors">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 5: Pharmacy -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:shadow-xl hover:border-hospital-300 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-amber-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-pills"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-hospital-600">Hospital Pharmacy</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            In-house dispensing of essential medications, emergency drugs, and prescribed treatments for inpatients and OPD.
+                        </p>
+                    </div>
+                    <button onclick="openModal('service-pharmacy')" class="text-hospital-600 font-bold text-sm inline-flex items-center hover:text-hospital-800 transition-colors">
+                        Learn More <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Service 6: PhilHealth YAKAP & GAMOT -->
+                <div class="bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 hover:shadow-xl hover:border-hospital-300 transition-all group flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors shadow-sm">
+                            <i class="fa-solid fa-handshake-angle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-hospital-600">PhilHealth YAKAP & PhilHealth GAMOT Accredited</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            On-site assistance for PhilHealth membership coverage, YAKAP consultations, GAMOT medication claims, and medical social work.
+                        </p>
+                    </div>
+                    <a href="#patient-guide" class="text-hospital-600 font-bold text-sm inline-flex items-center hover:text-hospital-800 transition-colors">
+                        Guide & Requirements <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- OPD CLINIC SCHEDULE SECTION -->
+    <section id="opd-schedule" class="py-16 sm:py-20 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-hospital-600 text-xs sm:text-sm font-bold tracking-widest uppercase bg-hospital-100 px-3 py-1 rounded-full">Outpatient Clinic</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-hospital-900 mt-3">OPD Consultation Schedule</h2>
+                </div>
+                <p class="text-slate-600 text-sm sm:text-base max-w-md mt-4 md:mt-0">
+                    <i class="fa-solid fa-circle-info text-hospital-500 mr-1"></i> Registration starts at <strong>7:30 AM</strong> daily. Please bring a valid government ID or PhilHealth MDR card.
+                </p>
+            </div>
+
+            <!-- Schedule Table Card -->
+            <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-hospital-800 text-white text-xs sm:text-sm font-bold uppercase tracking-wider">
+                                <th class="py-4 px-6">Department / Clinic</th>
+                                <th class="py-4 px-6">Days</th>
+                                <th class="py-4 px-6">Hours</th>
+                                <th class="py-4 px-6 text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
+                            <!-- Row 1: General Medicine -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="py-4 px-6 font-bold text-hospital-800 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-hospital-100 text-hospital-600 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-stethoscope text-xs"></i>
+                                    </div>
+                                    General Medicine / Consultation
+                                </td>
+                                <td class="py-4 px-6 font-medium">Monday – Friday</td>
+                                <td class="py-4 px-6">8:00 AM – 5:00 PM</td>
+                                <td class="py-4 px-6 text-center">
+                                    <span class="bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-full text-xs">Active</span>
+                                </td>
+                            </tr>
+                            
+                            <!-- Row 2: Dental Services -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="py-4 px-6 font-bold text-hospital-800 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-tooth text-xs"></i>
+                                    </div>
+                                    Dental Services
+                                </td>
+                                <td class="py-4 px-6 font-medium">Monday, Wednesday, Friday only</td>
+                                <td class="py-4 px-6">9:30 AM – 12:00 NN</td>
+                                <td class="py-4 px-6 text-center">
+                                    <span class="bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-full text-xs">Active</span>
+                                </td>
+                            </tr>
+                            
+                            <!-- Row 3: Saturdays & Holidays -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="py-4 px-6 font-bold text-hospital-800 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-calendar-check text-xs"></i>
+                                    </div>
+                                    Saturdays & Holidays
+                                </td>
+                                <td class="py-4 px-6 font-medium">Saturdays & Holidays</td>
+                                <td class="py-4 px-6">8:00 AM – 12:00 NN</td>
+                                <td class="py-4 px-6 text-center">
+                                    <span class="bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-full text-xs">Active</span>
+                                </td>
+                            </tr>
+                            
+                            <!-- Row 4: Sundays -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="py-4 px-6 font-bold text-hospital-800 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-truck-medical text-xs"></i>
+                                    </div>
+                                    Sundays
+                                </td>
+                                <td class="py-4 px-6 font-medium">Sundays</td>
+                                <td class="py-4 px-6">Emergency cases only, no OPD Check-up</td>
+                                <td class="py-4 px-6 text-center">
+                                    <span class="bg-red-100 text-red-800 font-semibold px-2.5 py-1 rounded-full text-xs">ER Active</span>
+                                </td>
+                            </tr>
+                            
+                            <!-- Row 5: Unavailable Services -->
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="py-4 px-6 font-bold text-slate-500 flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-ban text-xs"></i>
+                                    </div>
+                                    OB-GYN, Pediatrics & ABTC
+                                </td>
+                                <td class="py-4 px-6 font-medium text-slate-400">-</td>
+                                <td class="py-4 px-6 text-slate-400">-</td>
+                                <td class="py-4 px-6 text-center">
+                                    <span class="bg-slate-100 text-slate-600 font-semibold px-2.5 py-1 rounded-full text-xs">Not yet available until further notice</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Table Footer Notice -->
+                <div class="bg-slate-100 p-4 text-center text-xs sm:text-sm text-slate-600 border-t border-slate-200">
+                    <p><i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i> Schedules are subject to change on municipal holidays. Emergency consultations are processed immediately through the ER 24/7.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PATIENT & VISITOR GUIDE (INTERACTIVE TABS) -->
+    <section id="patient-guide" class="py-16 sm:py-20 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-hospital-600 text-xs sm:text-sm font-bold tracking-widest uppercase bg-hospital-50 px-3 py-1 rounded-full">Patient Information</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-hospital-900 mt-3 mb-4">Patient & Visitor Guidelines</h2>
+                <p class="text-slate-600">Essential information to ensure a smooth, organized, and hassle-free visit to Malasiqui Municipal Hospital.</p>
+            </div>
+
+            <!-- Tab Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8 border-b border-slate-200 pb-4">
+                <button onclick="switchTab('tab-bring')" id="btn-tab-bring" class="tab-btn bg-hospital-600 text-white font-bold px-6 py-3 rounded-xl text-sm transition-all shadow-sm">
+                    <i class="fa-solid fa-clipboard-list mr-2"></i> What to Bring
+                </button>
+                <button onclick="switchTab('tab-visiting')" id="btn-tab-visiting" class="tab-btn bg-slate-100 text-slate-700 hover:bg-slate-200 font-bold px-6 py-3 rounded-xl text-sm transition-all">
+                    <i class="fa-solid fa-clock-rotate-left mr-2"></i> Visiting Hours
+                </button>
+                <button onclick="switchTab('tab-philhealth')" id="btn-tab-philhealth" class="tab-btn bg-slate-100 text-slate-700 hover:bg-slate-200 font-bold px-6 py-3 rounded-xl text-sm transition-all">
+                    <i class="fa-solid fa-file-medical mr-2"></i> PhilHealth Assistance
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="max-w-4xl mx-auto bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                
+                <!-- Tab 1: What to Bring -->
+                <div id="tab-bring" class="tab-content block space-y-4">
+                    <h3 class="text-xl font-bold text-hospital-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-accent-500"></i> Checklist for OPD, YAKAP Consultation & Admission
+                    </h3>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700">
+                        <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-id-card text-hospital-600 text-lg mt-0.5"></i>
+                            <div>
+                                <strong>PhilHealth ID</strong>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-id-card-clip text-hospital-600 text-lg mt-0.5"></i>
+                            <div>
+                                <strong>PhilSys ID</strong>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-address-card text-hospital-600 text-lg mt-0.5"></i>
+                            <div>
+                                <strong>Driver's License</strong>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-fingerprint text-hospital-600 text-lg mt-0.5"></i>
+                            <div>
+                                <strong>Voter's ID</strong>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-person-cane text-hospital-600 text-lg mt-0.5"></i>
+                            <div>
+                                <strong>Senior Citizen ID</strong>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3 bg-white p-3.5 rounded-xl border border-slate-200">
+                            <i class="fa-solid fa-file-contract text-hospital-600 text-lg mt-0.5"></i>
+                            <div>
+                                <strong>Copy of Birth Certificate</strong>
+                                <p class="text-xs text-slate-500">For 5 years old and below</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="bg-hospital-50 border border-hospital-100 p-4 rounded-xl text-xs text-hospital-800 font-medium mt-4">
+                        <i class="fa-solid fa-triangle-exclamation mr-1.5 text-hospital-600"></i> *Required for MMH Registered YAKAP Beneficiaries
+                    </div>
+                </div>
+
+                <!-- Tab 2: Visiting Hours -->
+                <div id="tab-visiting" class="tab-content hidden space-y-4">
+                    <h3 class="text-xl font-bold text-hospital-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-clock text-hospital-600"></i> Ward Visiting Hours
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <span class="text-xs font-bold text-hospital-600 uppercase">Morning Visiting Schedule</span>
+                            <p class="text-lg font-bold text-slate-800 mt-1">8:00 AM – 12:00 NN</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <span class="text-xs font-bold text-hospital-600 uppercase">Afternoon Visiting Schedule</span>
+                            <p class="text-lg font-bold text-slate-800 mt-1">4:00 PM – 8:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 border border-amber-200 text-amber-900 p-4 rounded-xl text-xs sm:text-sm space-y-2 mt-4">
+                        <p class="font-bold"><i class="fa-solid fa-shield-virus mr-1"></i> Visitor Safety Guidelines:</p>
+                        <ul class="list-disc list-inside space-y-1 text-slate-700">
+                            <li>Maximum of <strong>2 visitors per patient</strong> allowed inside the ward at a time.</li>
+                            <li>Wearing of face masks is recommended inside clinical wards.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tab 3: PhilHealth & Assistance -->
+                <div id="tab-philhealth" class="tab-content hidden space-y-4">
+                    <h3 class="text-xl font-bold text-hospital-800 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-hand-holding-dollar text-emerald-600"></i> PhilHealth YAKAP & PhilHealth GAMOT
+                    </h3>
+                    <p class="text-sm text-slate-600">
+                        Malasiqui Municipal Hospital provides full assistance for PhilHealth billing coverage, YAKAP consultations, and GAMOT medication requirements.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm mb-1">PhilHealth YAKAP Services</h4>
+                            <p class="text-xs text-slate-500">Assists with registration, primary care consultations, and benefit entitlements for members.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm mb-1">PhilHealth GAMOT Services</h4>
+                            <p class="text-xs text-slate-500">Evaluation and processing of essential medication claims and assistance for registered beneficiaries.</p>
+                        </div>
                     </div>
                 </div>
 
             </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT, EMERGENCY DIAL & LOCATION SECTION -->
+    <section id="location" class="py-16 sm:py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-hospital-600 text-xs sm:text-sm font-bold tracking-widest uppercase bg-hospital-100 px-3 py-1 rounded-full">Contact & Location</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-hospital-900 mt-3 mb-4">Find Us in Malasiqui</h2>
+                <p class="text-slate-600">Easily reachable for emergency response and outpatient appointments.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Contact Information Cards (5 Cols) -->
+                <div class="lg:col-span-5 space-y-4">
+                    
+                    <!-- Card 1: Address -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-hospital-100 text-hospital-600 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Hospital Address</h3>
+                            <p class="text-sm text-slate-600 mt-1">
+                                Malasiqui Municipal Hospital<br>
+                                Cabatling, Malasiqui, Pangasinan,<br>
+                                Malasiqui, Philippines, 2421
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Emergency Hotlines -->
+                    <div class="bg-red-50 p-6 rounded-2xl border border-red-200 shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-red-600 text-white flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-red-900 text-base">24/7 Emergency Hotlines</h3>
+                            <p class="text-xs text-red-700 mt-0.5">Click to dial immediately from your phone:</p>
+                            <div class="mt-3 space-y-2">
+                                <a href="tel:+639629339935" class="block bg-white hover:bg-slate-50 text-red-600 font-bold px-3.5 py-2 rounded-lg text-sm border border-red-200 transition-colors shadow-sm">
+                                    <i class="fa-solid fa-phone mr-2"></i> Landline: (0962) 933 9935
+                                </a>
+                                <a href="tel:+639629339935" class="block bg-white hover:bg-slate-50 text-red-600 font-bold px-3.5 py-2 rounded-lg text-sm border border-red-200 transition-colors shadow-sm">
+                                    <i class="fa-solid fa-mobile-screen mr-2"></i> Mobile: +63 962 933 9935
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: OPD & Admin Line -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-base">Information Desk & OPD</h3>
+                            <p class="text-sm text-slate-600 mt-1">Landline: (0962) 933 9935</p>
+                            <p class="text-sm text-slate-600 mt-1">Mobile: +63 962 933 9935</p>
+                            <p class="text-xs text-slate-500 mt-2">Email: malasiquimunicipal.hospital@gmail.com</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Interactive Map Placeholder / Embed (7 Cols) -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 h-full flex flex-col justify-between">
+                        
+                        <!-- Map Visual Container -->
+                        <div class="relative w-full h-80 lg:h-96 bg-slate-200 rounded-xl overflow-hidden flex items-center justify-center border border-slate-200">
+                            <!-- Visual mock map graphic -->
+                            <div class="absolute inset-0 bg-slate-100 opacity-90 flex flex-col items-center justify-center p-6 text-center">
+                                <div class="w-16 h-16 rounded-full bg-hospital-600 text-white flex items-center justify-center text-2xl shadow-xl animate-bounce mb-3">
+                                    <i class="fa-solid fa-hospital"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-800 text-lg">Malasiqui Municipal Hospital</h4>
+                                <p class="text-xs text-slate-500 max-w-xs mt-1">Cabatling, Malasiqui, Pangasinan.</p>
+                                
+                                <a href="https://maps.app.goo.gl/K4dtA4wuU9gzYQUB6" target="_blank" rel="noopener noreferrer" class="mt-4 bg-hospital-600 hover:bg-hospital-700 text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow transition-all flex items-center gap-2">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Directions info -->
+                        <div class="mt-4 p-3 bg-slate-50 rounded-xl text-xs text-slate-600 flex items-center justify-between border border-slate-100">
+                            <span class="flex items-center gap-2 font-medium">
+                                <i class="fa-solid fa-map-location-dot text-hospital-600"></i> Accessible via Cabatling Highway
+                            </span>
+                            <span class="text-emerald-600 font-bold hidden sm:inline">Parking Available</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 py-12 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-            <div>
-                <p class="text-white font-bold text-base">Malasiqui Municipal Hospital</p>
-                <p class="text-xs text-slate-400 mt-1">Committed to public service, community health, and compassionate medical care.</p>
+    <footer class="bg-hospital-900 text-white pt-12 pb-8 border-t border-hospital-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Col 1: Hospital Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-hospital-600 text-white flex items-center justify-center font-bold text-lg">
+                            <i class="fa-solid fa-hospital"></i>
+                        </div>
+                        <span class="font-extrabold text-xl text-white">Malasiqui Municipal Hospital</span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-sm mb-4 leading-relaxed">
+                        A public municipal healthcare facility committed to delivering equitable, quality, and accessible health services to the residents of Malasiqui, Pangasinan.
+                    </p>
+                    <p class="text-xs text-slate-500">
+                        Under the management of the Local Government Unit (LGU) of Malasiqui.
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-hospital-100 mb-4">Quick Navigation</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#services" class="hover:text-white transition-colors">Medical Services</a></li>
+                        <li><a href="#opd-schedule" class="hover:text-white transition-colors">OPD Doctors Schedule</a></li>
+                        <li><a href="#patient-guide" class="hover:text-white transition-colors">Patient & Visitor Guide</a></li>
+                        <li><a href="#location" class="hover:text-white transition-colors">Emergency Contacts</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Municipal & Legal -->
+                <div>
+                    <h4 class="font-bold text-sm uppercase tracking-wider text-hospital-100 mb-4">Governance & Legal</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li>
+                            <a href="#" onclick="alert('Citizens Charter PDF document placeholder.'); return false;" class="hover:text-white transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-file-pdf text-xs text-red-400"></i> Citizen's Charter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://pangasinan.gov.ph" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                                Province of Pangasinan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" onclick="alert('Privacy Policy information.'); return false;" class="hover:text-white transition-colors">
+                                Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-            <div class="text-xs text-slate-500">
-                <p>© 2026 Malasiqui Municipal Hospital. All rights reserved.</p>
-                <p class="mt-1">Department of Health & PhilHealth Accredited Institution</p>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="pt-8 border-t border-hospital-800 text-center sm:flex sm:justify-between sm:text-left text-xs text-slate-500">
+                <p>&copy; 2026 Malasiqui Municipal Hospital. All Rights Reserved.</p>
+                <p class="mt-2 sm:mt-0">Official Portal of LGU Malasiqui, Pangasinan.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Simple Mobile Menu Toggle Script -->
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <!-- SERVICE DETAIL MODAL CONTAINER -->
+    <div id="service-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative border border-slate-100 animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Content inserted dynamically -->
+            </div>
+        </div>
+    </div>
 
-        menuBtn.addEventListener('click', () => {
+    <!-- JAVASCRIPT FOR INTERACTIVITY -->
+    <script>
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
         });
 
-        // Close menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
+        // Close mobile drawer when link clicked
+        document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
             });
+        });
+
+        // Tab Switching Logic for Patient Guide
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+                content.classList.remove('block');
+            });
+
+            // Reset tab button styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-hospital-600', 'text-white', 'shadow-sm');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+
+            // Show target tab content
+            const targetContent = document.getElementById(tabId);
+            if (targetContent) {
+                targetContent.classList.remove('hidden');
+                targetContent.classList.add('block');
+            }
+
+            // Highlight active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-slate-700');
+                activeBtn.classList.add('bg-hospital-600', 'text-white', 'shadow-sm');
+            }
+        }
+
+        // Service Modal Details Handler
+        const modalData = {
+            'service-er': {
+                title: '24/7 Emergency Medical Care',
+                icon: 'fa-truck-medical text-red-600',
+                details: 'Our Emergency Room is staffed around the clock with experienced physicians and nurses ready to treat acute injuries, sudden severe illnesses, trauma, and medical stabilization.',
+                requirements: 'Emergency triage is conducted immediately upon arrival. No pre-registration required.'
+            },
+            'service-maternity': {
+                title: 'Maternity & Child Health Services',
+                icon: 'fa-baby-carriage text-pink-600',
+                details: 'Currently not yet available until further notice.',
+                requirements: 'Please stand by for further announcements regarding the reopening of this department.'
+            },
+            'service-lab': {
+                title: 'Laboratory & Diagnostic Imaging',
+                icon: 'fa-microscope text-purple-600',
+                details: 'Diagnostic testing available: Complete Blood Count (CBC), Urinalysis, Fecalysis, Blood Sugar/Glucose, Lipid Profile, Diagnostic Chest X-Ray, and routine ECG.',
+                requirements: 'Fasting may be required for specific blood glucose and lipid profile tests.'
+            },
+            'service-pharmacy': {
+                title: 'Hospital Pharmacy',
+                icon: 'fa-pills text-amber-600',
+                details: 'Provides prescribed essential medications for inpatient treatments and outpatient prescriptions based on the Department of Health (DOH) essential drug list.',
+                requirements: 'Please present a valid prescription slip signed by a licensed MMH attending physician.'
+            }
+        };
+
+        function openModal(serviceKey) {
+            const data = modalData[serviceKey];
+            if (!data) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center text-2xl">
+                        <i class="fa-solid ${data.icon}"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800">${data.title}</h3>
+                </div>
+                <p class="text-slate-600 text-sm leading-relaxed mb-4">${data.details}</p>
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs text-slate-600">
+                    <strong>Note:</strong> ${data.requirements}
+                </div>
+                <div class="mt-6 text-right">
+                    <button onclick="closeModal()" class="bg-hospital-600 text-white font-bold px-5 py-2 rounded-lg text-sm hover:bg-hospital-700">
+                        Close
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('service-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('service-modal').classList.add('hidden');
+        }
+
+        // Close modal when clicking background backdrop
+        document.getElementById('service-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'service-modal') {
+                closeModal();
+            }
         });
     </script>
 </body>
